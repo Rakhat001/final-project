@@ -1,0 +1,213 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`Events GraphQL (e2e) GraphQL Schema Introspection (snapshot) should match Event type schema 1`] = `
+{
+  "fields": [
+    {
+      "name": "id",
+      "type": {
+        "kind": "NON_NULL",
+        "name": null,
+      },
+    },
+    {
+      "name": "title",
+      "type": {
+        "kind": "NON_NULL",
+        "name": null,
+      },
+    },
+    {
+      "name": "description",
+      "type": {
+        "kind": "NON_NULL",
+        "name": null,
+      },
+    },
+    {
+      "name": "date",
+      "type": {
+        "kind": "NON_NULL",
+        "name": null,
+      },
+    },
+    {
+      "name": "img",
+      "type": {
+        "kind": "SCALAR",
+        "name": "String",
+      },
+    },
+    {
+      "name": "organizer",
+      "type": {
+        "kind": "NON_NULL",
+        "name": null,
+      },
+    },
+    {
+      "name": "participants",
+      "type": {
+        "kind": "NON_NULL",
+        "name": null,
+      },
+    },
+  ],
+  "name": "Event",
+}
+`;
+
+exports[`Events GraphQL (e2e) Query: event (single) should return error for non-existent event (snapshot) 1`] = `
+{
+  "errorExtensions": "INTERNAL_SERVER_ERROR",
+  "errorMessage": "Event with ID 000000000000000000000000 not found",
+  "hasErrors": true,
+}
+`;
+
+exports[`Events GraphQL (e2e) Query: events should match events response schema structure 1`] = `
+{
+  "eventFields": [
+    "date",
+    "description",
+    "id",
+    "img",
+    "organizer",
+    "participants",
+    "title",
+  ],
+  "hasData": true,
+  "hasEvents": true,
+  "isEventsArray": true,
+}
+`;
+
+exports[`Events GraphQL (e2e) Query: events should return events list with correct structure (snapshot) 1`] = `
+[
+  {
+    "date": "2026-01-19T19:00:00.000Z",
+    "description": "Ps test events ",
+    "id": "696cd756a49b6e2540591d25",
+    "img": "https://img-event.object.pscloud.io/img-event/1768740687417-test.jpg",
+    "organizer": {
+      "email": "rakhat@ps.kz",
+      "id": "696ccd479d68d019b4344f86",
+      "name": "Rakhat",
+    },
+    "participants": [
+      {
+        "email": "mikhail@ps.kz",
+        "id": "696cda5fa49b6e2540591d4c",
+        "name": "Misha",
+      },
+      {
+        "email": "test123@ps.kz",
+        "id": "696ff54959b4e5ffdcd07aab",
+        "name": "test123",
+      },
+      {
+        "email": "shaka@shaka.kz",
+        "id": "6973df544e4f79c4801cd9a2",
+        "name": "Shaka",
+      },
+    ],
+    "title": "Ps Test event",
+  },
+  {
+    "date": "2026-01-26T19:00:00.000Z",
+    "description": "My event ",
+    "id": "696cd8c6a49b6e2540591d3f",
+    "img": "https://img-event.object.pscloud.io/img-event/1768740887692-test.jpg",
+    "organizer": {
+      "email": "rakhat@ps.kz",
+      "id": "696ccd479d68d019b4344f86",
+      "name": "Rakhat",
+    },
+    "participants": [
+      {
+        "email": "test123@ps.kz",
+        "id": "696ff54959b4e5ffdcd07aab",
+        "name": "test123",
+      },
+      {
+        "email": "shaka@shaka.kz",
+        "id": "6973df544e4f79c4801cd9a2",
+        "name": "Shaka",
+      },
+    ],
+    "title": "My event",
+  },
+  {
+    "date": "2026-01-18T19:00:00.000Z",
+    "description": "Hello my name is Tosha",
+    "id": "696cf00aa3b99652e0e6c2b1",
+    "img": "https://img-event.object.pscloud.io/img-event/1768746969637-360_F_265454820_AyKM02ugZ0WMtLdsMy6OKi4yxEZi0H91.webp",
+    "organizer": {
+      "email": "tosha@ps.kz",
+      "id": "696ce69da3b99652e0e6c278",
+      "name": "tosha",
+    },
+    "participants": [
+      {
+        "email": "rakhat@ps.kz",
+        "id": "696ccd479d68d019b4344f86",
+        "name": "Rakhat",
+      },
+      {
+        "email": "test123@ps.kz",
+        "id": "696ff54959b4e5ffdcd07aab",
+        "name": "test123",
+      },
+    ],
+    "title": "My event",
+  },
+  {
+    "date": "2026-01-25T00:04:00.000Z",
+    "description": "Test event for Dimash",
+    "id": "696fc8d5b44a0d8c7a0c7160",
+    "img": "https://img-event.object.pscloud.io/img-event/1768933461772-360_F_265454820_AyKM02ugZ0WMtLdsMy6OKi4yxEZi0H91.webp",
+    "organizer": {
+      "email": "dimash@ps.kz",
+      "id": "696fc7a5b44a0d8c7a0c714d",
+      "name": "Dimash",
+    },
+    "participants": [
+      {
+        "email": "rakhat@ps.kz",
+        "id": "696ccd479d68d019b4344f86",
+        "name": "Rakhat",
+      },
+      {
+        "email": "test123@ps.kz",
+        "id": "696ff54959b4e5ffdcd07aab",
+        "name": "test123",
+      },
+      {
+        "email": "tosha@ps.kz",
+        "id": "696ce69da3b99652e0e6c278",
+        "name": "tosha",
+      },
+    ],
+    "title": "Dimash Event",
+  },
+  {
+    "date": "2026-01-30T19:00:00.000Z",
+    "description": "Shaka event",
+    "id": "6973e02e4e4f79c4801cda0e",
+    "img": "https://img-event.object.pscloud.io/img-event/1769201706651-PAINT_IN_THE_DARK_MK1_AV-93_CROPMOBILE_emliic.jpeg",
+    "organizer": {
+      "email": "shaka@shaka.kz",
+      "id": "6973df544e4f79c4801cd9a2",
+      "name": "Shaka",
+    },
+    "participants": [
+      {
+        "email": "rakhat@ps.kz",
+        "id": "696ccd479d68d019b4344f86",
+        "name": "Rakhat",
+      },
+    ],
+    "title": "test123",
+  },
+]
+`;
