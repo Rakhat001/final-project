@@ -1,0 +1,57 @@
+services:
+  mongodb:
+    image: mongo:7
+    container_name: event-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_DB}
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - event-network
+
+  backend:
+    build: ./event-backend
+    container_name: event-backend
+    restart: unless-stopped
+    environment:
+      - MONGODB_URI=mongodb://${MONGO_USER}:${MONGO_PASSWORD}@mongodb:27017/${MONGO_DB}?authSource=admin
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET}
+      - PORT=3000
+      - NODE_ENV=production
+      - S3_ACESS_KEY=${S3_ACESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_URL=${S3_URL}
+      - S3_REGION=${S3_REGION}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    networks:
+      - event-network
+
+  frontend:
+    build: ./event-frontend
+    container_name: event-frontend
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    ports:
+      - "3001:3001"
+    depends_on:
+      - backend
+    networks:
+      - event-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  event-network:
+    driver: bridge

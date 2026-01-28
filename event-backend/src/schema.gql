@@ -1,0 +1,80 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserEntity {
+  id: ID!
+  email: String!
+  name: String!
+  avatarUrl: String
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Event {
+  id: ID!
+  title: String!
+  description: String!
+  date: DateTime!
+  img: String
+  organizer: UserEntity!
+  participants: [UserEntity!]!
+}
+
+type UserResponse {
+  id: String!
+  email: String!
+  name: String!
+}
+
+type AuthPayload {
+  accessToken: String!
+  refreshToken: String!
+  user: UserResponse!
+}
+
+type Query {
+  hello: String!
+  me: UserEntity!
+  users: [UserEntity!]!
+  events(offset: Int! = 0, limit: Int! = 10): [Event!]!
+  event(id: ID!): Event!
+  myEvents: [Event!]!
+  subscribedEvents: [Event!]!
+}
+
+type Mutation {
+  createEvent(createEventInput: CreateEventInput!): Event!
+  registerForEvent(id: ID!): Event!
+  cancelRegistration(id: ID!): Event!
+  login(loginInput: LoginInput!): AuthPayload!
+  signup(userInput: UserInput!): AuthPayload!
+  refreshTokens: AuthPayload!
+  logout: Boolean!
+}
+
+input CreateEventInput {
+  title: String!
+  description: String!
+  date: DateTime!
+  img: String
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input UserInput {
+  email: String!
+  name: String!
+  password: String!
+}
+
+type Subscription {
+  onUserRegistered: UserEntity!
+}
