@@ -1,4 +1,13 @@
-import { Resolver, Query, Mutation, Args, ID, ResolveField, Parent, Subscription } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ID,
+  ResolveField,
+  Parent,
+  Subscription,
+} from '@nestjs/graphql';
 import { UseGuards } from '@nestjs/common';
 import { EventsService } from './events.service';
 import { Event } from './entities/event.entity';
@@ -45,7 +54,10 @@ export class EventsResolver {
 
   @Query(() => [Event], { name: 'events' })
   async findAll(@Args() paginationArgs: PaginationArgs) {
-    return this.eventsService.findAll(paginationArgs.offset, paginationArgs.limit);
+    return this.eventsService.findAll(
+      paginationArgs.offset,
+      paginationArgs.limit,
+    );
   }
 
   @Query(() => Event, { name: 'event' })
@@ -87,17 +99,17 @@ export class EventsResolver {
     filter: (payload, variables, context) => {
       console.log('Subscription Payload:', payload);
       console.log('Subscription Context User:', context?.user);
-      
+
       const currentUserId = context?.user?.id;
-      
+
       if (!currentUserId) {
         console.log('No authenticated user in context - subscription blocked');
         return false;
       }
-      
+
       const isOrganizer = payload.organizerId === currentUserId;
       console.log(`User ${currentUserId} is organizer: ${isOrganizer}`);
-      
+
       return isOrganizer;
     },
   })

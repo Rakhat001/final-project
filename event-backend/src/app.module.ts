@@ -37,7 +37,9 @@ import { JwtService } from '@nestjs/jwt';
           'graphql-ws': {
             onConnect: (context: any) => {
               const { connectionParams, extra } = context;
-              const authHeader = connectionParams?.Authorization || connectionParams?.authorization;
+              const authHeader =
+                connectionParams?.Authorization ||
+                connectionParams?.authorization;
               if (!authHeader) {
                 console.log('WebSocket connection: No token provided');
                 return;
@@ -49,15 +51,20 @@ import { JwtService } from '@nestjs/jwt';
                 });
 
                 const payload = jwtService.verify(token);
-                
+
                 extra.user = {
                   id: payload.sub,
                   email: payload.email,
                 };
-                
-                console.log(`WebSocket authenticated for user: ${payload.email}`);
+
+                console.log(
+                  `WebSocket authenticated for user: ${payload.email}`,
+                );
               } catch (error) {
-                console.error('WebSocket authentication failed:', error.message);
+                console.error(
+                  'WebSocket authentication failed:',
+                  error.message,
+                );
               }
             },
           },
